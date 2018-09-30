@@ -18,3 +18,12 @@ from sklearn.preprocessing import Imputer
 imputer = Imputer(missing_values="NaN", strategy='mean', axis=0)
 imputer = imputer.fit(X[:,1:3])
 X[:, 1:3] = imputer.transform(X[:, 1:3])
+
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+labelencode_X = LabelEncoder()
+X[:, 0] = labelencode_X.fit_transform(X[:, 0])
+onehotencoder = OneHotEncoder(categorical_features = [0])
+X = onehotencoder.fit_transform(X).toarray()
+
+labelencode_Y = LabelEncoder()
+Y = labelencode_Y.fit_transform(Y)
